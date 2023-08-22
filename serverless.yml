@@ -1,0 +1,38 @@
+service: sqs-localstack-lambda
+frameworkVersion: '3'
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  environment:
+    QUEUE_URL: http://localhost:4566/000000000000/teste
+
+custom:
+  serverless-offline:
+    host: 0.0.0.0
+
+constructs:
+  jobs:
+    type: queue
+    worker:
+      handler: index.consumer
+    environment:
+      QUEUE_URL: http://localhost:4566/000000000000/teste
+
+
+functions:
+  producer:
+    handler: src/producer.main
+    events:
+      - httpApi:
+          method: post
+          path: /produce
+    # environment:
+    #   QUEUE_URL: ${construct:jobs.queueUrl}
+
+plugins:
+  - serverless-lift
+  - serverless-offline
+  - serverless-dotenv-plugin

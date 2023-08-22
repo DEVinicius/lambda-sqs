@@ -1,0 +1,23 @@
+{
+  "name": "sqs-localstack-lambda",
+  "version": "1.0.0",
+  "description": "Serverless Framework Node SQS Producer-Consumer on AWS",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "offline": "npx sls offline start",
+    "start": "npx nodemon --exec npm run offline"
+  },
+  "devDependencies": {
+    "jest": "^29.6.3",
+    "nodemon": "^3.0.1",
+    "serverless": "^3.34.0",
+    "serverless-dotenv-plugin": "^6.0.0",
+    "serverless-lift": "^1.27.0",
+    "serverless-offline": "^12.0.4"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1441.0",
+    "axios": "^1.4.0"
+  }
+}
